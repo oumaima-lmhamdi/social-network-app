@@ -1,10 +1,13 @@
 import './MessageFromThem.css';
+import {formatDistance} from 'date-fns';
 
-const MessageFromThem = () => {
+
+const MessageFromThem = ({content, createdAt}) => {
     return ( 
-
-        <p class="from-them">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla commodo pulvinar lectus, ac tincidunt justo bibendum eu.</p>
-
+        <>
+        <p className="from-them">{content}</p>
+        <p>{formatDistance(new Date(createdAt), new Date(), {addSuffix: true})}</p> 
+        </>
 
      );
 }
