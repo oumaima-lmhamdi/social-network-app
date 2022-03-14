@@ -7,7 +7,7 @@ const MessageFromMe = ({content, createdAt}) => {
     return ( 
         <>
         <p className="from-me">{content}</p>
-        <p>{formatDistance(new Date(createdAt), new Date(), {addSuffix: true})}</p>
+        <p className='sendedAt-fm'>{formatDistance(new Date(createdAt), new Date(), {addSuffix: true})}</p>
         </>
 
      );

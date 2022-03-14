@@ -9,19 +9,20 @@ const sender = currentUserId;
 
 
 
-const SendMessage = ({conversationId}) => {
+const SendMessage = ({conversationId, getNewMsg}) => {
   
   const [content, setContent] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
     const message = { sender, content, conversationId};
+
   
     fetch('http://localhost:8082/messages/', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(message)
     }).then(() => {
-      console.log('message sent')
+      setContent('');
     })
   }
 

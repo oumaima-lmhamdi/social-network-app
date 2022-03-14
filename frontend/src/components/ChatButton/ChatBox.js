@@ -6,6 +6,8 @@ import ChatHeader from './ChatHeader';
 import { useState } from 'react';
 import useFetch from './useFetch';
 import useFetchData from './useFetchData';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 
 
@@ -16,13 +18,57 @@ const ChatBox = () => {
   const childToParent = (childdata) => {
     setData(childdata);
   }
+  const [messages, setMessages] = useState([]);
+  
+
+
+  useEffect(() => {
+    const getMessages = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8082/messages/${data}`);
+        setMessages(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getMessages();
+  }, [messages]);
+
+
+
+
+
+
+
+
+
+
+
+
+  
   
   const currentUserId = '62292710bfb98b76e60a458b';
   // console.log(data conversationId);
-  const { data: messages } = useFetchData(`http://localhost:8082/messages/${data}`, data);
+  // const { data: messages } = useFetch(`http://localhost:8082/messages/${data}`);
 
   // const { data: messages } = useFetch(`http://localhost:8082/messages/${data}`);
   if(messages){var count = Object.keys(messages).length;}
+
+
+//   const [newMsg, setNewMsg] = useState('');
+
+//   const getNewMsg = (nmsg) => {
+//    setNewMsg(nmsg)
+// }
+// console.log(messages);
+
+  // const [msgs, setMsgs] = useState(messages);
+
+ 
+  // newMsg && setMsgs([...msgs, newMsg]);
+
+
+
 
   const {data: allConversations} = useFetch(`http://localhost:8082/conversations/${currentUserId}`);
   // console.log(conversationInfo);
@@ -57,7 +103,7 @@ const ChatBox = () => {
       <ChatAside childToParent= {childToParent}/>
       <main>
         
-        {!data? <><div id="chat">Select a friend to start discussion</div></>: <><ChatHeader friendId={friendId} count={count} /><Chat messages = {messages} count={count} /> <SendMessage conversationId={data}/> </>}
+        {!data? <><div id="chatt">Select a friend to start discussion</div></>: <><ChatHeader friendId={friendId} count={count} /><Chat messages = {messages} count={count} /> <SendMessage conversationId={data}/> </>}
         
         
       </main>

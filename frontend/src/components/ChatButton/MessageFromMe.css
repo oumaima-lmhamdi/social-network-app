@@ -30,3 +30,8 @@ p.from-me {
   p.from-me ~ p.from-me:last-child {
     margin-bottom: 0.5rem;
   }
+  .sendedAt-ft{
+    font-size: 12px;
+    margin-top: 10px;
+    right: -40px;
+  }
