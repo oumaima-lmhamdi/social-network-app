@@ -10,8 +10,8 @@ export default function Feed({ username }) {
   useEffect(()=>{
     const fetchPosts = async () =>{
       const res = username
-      ? await axios.get("posts/profile/"+username)
-      : await axios.get("posts/timeline/621c04de5e871c3f811821cb");
+      ? await axios.get("/posts/profile/"+username)
+      : await axios.get("posts/timeline/621c04de5e871c3f811821cb");  // fil d actu du user .
                                               
     setPosts(res.data)};
     fetchPosts();

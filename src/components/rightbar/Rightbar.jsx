@@ -34,7 +34,7 @@ export default function Rightbar({ user }) {
   const ProfileRightbar = () => {
     return (
       <>
-        <h4 className="rightbarTitle">User information</h4>
+        <h4 className="rightbarTitle">About User</h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">City:</span>
@@ -48,7 +48,7 @@ export default function Rightbar({ user }) {
             <span className="rightbarInfoKey">Relationship:</span>
             <span className="rightbarInfoValue">{user.relationship === 1
                 ? "Single"
-                : user.relationship === 1
+                : user.relationship === 2
                 ? "Married"
                 : "-"}</span>
           </div>
@@ -97,7 +97,7 @@ export default function Rightbar({ user }) {
               alt=""
               className="rightbarFollowingImg"
             />
-            <span className="rightbarFollowingName">John Carter</span>
+            <span className="rightbarFollowingName">Omar Ben</span>
           </div>
           <div className="rightbarFollowing">
             <img
@@ -105,7 +105,7 @@ export default function Rightbar({ user }) {
               alt=""
               className="rightbarFollowingImg"
             />
-            <span className="rightbarFollowingName">John Carter</span>
+            <span className="rightbarFollowingName">Omar Ben</span>
           </div>
           <div className="rightbarFollowing">
             <img
@@ -113,7 +113,7 @@ export default function Rightbar({ user }) {
               alt=""
               className="rightbarFollowingImg"
             />
-            <span className="rightbarFollowingName">John Carter</span>
+            <span className="rightbarFollowingName">Omar Ben</span>
           </div>
           <div className="rightbarFollowing">
             <img
@@ -121,7 +121,7 @@ export default function Rightbar({ user }) {
               alt=""
               className="rightbarFollowingImg"
             />
-            <span className="rightbarFollowingName">John Carter</span>
+            <span className="rightbarFollowingName">Omar Ben</span>
           </div>
           <div className="rightbarFollowing">
             <img
@@ -129,7 +129,7 @@ export default function Rightbar({ user }) {
               alt=""
               className="rightbarFollowingImg"
             />
-            <span className="rightbarFollowingName">John Carter</span>
+            <span className="rightbarFollowingName">Omar Ben</span>
           </div>
           <div className="rightbarFollowing">
             <img
