@@ -1,16 +1,30 @@
 import "./Post.css"
 import {MoreHoriz,ThumbUpAlt,Favorite,Send} from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import axios from "axios";
 import {format} from "timeago.js";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Post({post}) {
-    const [like,setLike] = useState(post.likes.length)
+    const [like,setLike] = useState(post.likes.length);
+    const [heart,setHeart] = useState(post.heart.length);
+
     const [isLiked,setIsLiked] = useState(false);
+    const [isHearted,setIsHearted] = useState(false);
+
     const [user,setUser] = useState({});
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const { user: currentUser } = useContext(AuthContext);
+    //checking if we ve already liked the post.
+    useEffect(() => {
+      setIsLiked(post.likes.includes(currentUser._id));
+    }, [currentUser._id, post.likes]);
+    //
+    useEffect(() => {
+      setIsHearted(post.heart.includes(currentUser._id));
+    }, [currentUser._id, post.heart]);
     
     useEffect(() => {
         const fetchUser = async () => {
@@ -23,15 +37,21 @@ export default function Post({post}) {
 
 
     const likeHandler =()=>{
-     setLike(isLiked ? like-1 : like+1)
-     setIsLiked(!isLiked)
+      try {
+        axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
+      } catch (err) {}
+      setLike(isLiked ? like - 1 : like + 1);
+      setIsLiked(!isLiked);
      }
-     const [heart,setHeart] = useState(post.heart)
-     const [isHearted,setIsHearted] = useState(false)
+
+     
 
     const heartHandler =()=>{
-     setHeart(isHearted ? heart-1 : heart+1)
-     setIsHearted(!isHearted)
+      try {
+        axios.put("/posts/" + post._id + "/heart", { userId: currentUser._id });
+      } catch (err) {}
+      setHeart(isHearted ? heart - 1 : heart + 1);
+      setIsHearted(!isHearted);
      }
     return (
         <div className="post">
@@ -40,7 +60,11 @@ export default function Post({post}) {
                      <div className="postTopLeft">
                      <Link to={`/profile/${user.username}`}>
                          <img className="postProfileImg" 
-                          src={user.profilePicture || PF+"person/noAvatar.png"}
+                          src={
+                            user.profilePicture
+                              ? PF + user.profilePicture
+                              : PF + "person/noAvatar.png"
+                          }
                           alt=""/>
                           </Link>
                          <span className="postUsername">
