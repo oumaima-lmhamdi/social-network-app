@@ -5,8 +5,11 @@ import Register from "./pages/register/Register";
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  Navigate
 } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "./contexts/AuthContext";
 
 
 
@@ -14,19 +17,20 @@ import {
 
 
 function App() {
+  const { user } = useContext(AuthContext);
   return (
     <Router>
       <Routes>
-      <Route path='/' element={<Home/>} />
+      <Route path='/' element={user ? <Home /> : <Register />} />
       </Routes>
       <Routes>
       <Route path='/profile/:username' element={<Profile/>} />
       </Routes>
       <Routes>
-      <Route path='/login' element={<Login/>} />
+      <Route path='/login' element={user ? <Navigate to="/" /> : <Login />} />
       </Routes>
       <Routes>
-      <Route path='/register' element={<Register/>} />
+      <Route path='/register' element={user ? <Navigate to="/" /> : <Register />} />
       </Routes>
     </Router>
   )
