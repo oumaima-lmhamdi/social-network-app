@@ -33,7 +33,7 @@ export default function Login() {
           <form className="loginBox" onSubmit={handlingClick}>
             <input placeholder="Email" type="email" required className="loginInput" ref={email} />
             <input placeholder="Password" type="password" required minLength="6" className="loginInput" ref={password} />
-            <button className="loginButton">Log In</button>
+            <button className="loginButton" type="submit">Log In</button>
             <span className="loginForgot">Forgot Password?</span>
             <button className="loginRegisterButton">
             <span className="plus">+</span> Create an Account

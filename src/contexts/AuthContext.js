@@ -10,7 +10,7 @@ const stateInitiale = {
 export const AuthContext = createContext(stateInitiale);
 
 export const AuthContextProvider = ({children})=>{
-    const [state,dispatch] = useReducer(AuthContext,stateInitiale);
+    const [state,dispatch] = useReducer(AuthReducer,stateInitiale);
 
     return (
         <AuthContext.Provider
