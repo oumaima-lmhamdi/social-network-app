@@ -41,6 +41,21 @@ router.put("/:id/like", async (req, res) => {
     res.status(500).json(err);
 }});
 
+//heart and unheart a post
+router.put("/:id/heart", async (req, res) => {
+  try {
+    const post = await Post.findById (req.params.id);
+   if (!post.heart.includes (req.body.userId)) {
+      await post.updateOne({ $push: { heart: req.body.userId } });
+      res.status(200).json("The post has been hearted");
+     } else {
+      await post.updateOne({ $pull: { heart: req.body.userId } });
+      res.status(200).json("The post has been dishearted");
+    }
+   } catch (err) {
+    res.status(500).json(err);
+}});
+
 //create a post
 router.post("/", async (req, res) => {
     const newPost = new Post(req.body);
