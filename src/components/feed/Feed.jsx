@@ -10,15 +10,19 @@ export default function Feed({ username }) {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(AuthContext);
 
-  useEffect(()=>{
-    const fetchPosts = async () =>{
+  useEffect(() => {
+    const fetchPosts = async () => {
       const res = username
-      ? await axios.get("/posts/profile/"+username)
-      : await axios.get("posts/timeline/" +user._id);  // fil d actu du user .
-                                              
-    setPosts(res.data)};
+        ? await axios.get("/posts/profile/" + username) // in case we re fetching posts in some user profile.
+        : await axios.get("posts/timeline/" + user._id);
+      setPosts(
+        res.data.sort((post1, post2) => {
+          return new Date(post2.createdAt) - new Date(post1.createdAt);
+        })
+      );
+    };
     fetchPosts();
-  },[username,user._id]);
+  }, [username, user._id]);
 
   return (
     <div className="feed">

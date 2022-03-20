@@ -28,7 +28,10 @@ export default function TopBar() {
       <div className="topbarRight">
         <div className="topbarLinks">
           <span className="topbarLink">Homepage</span>
+          <Link to="/" style={{textDecoration:"none",color:"white"}}>
           <span className="topbarLink">Timeline</span>
+      </Link>
+
           <span className="topbarLink">Network</span>
 
         </div>
@@ -52,7 +55,7 @@ export default function TopBar() {
                 ? PF + user.profilePicture
                 : PF + "person/noAvatar.png"} alt="" className="topbarImg"/>
         </Link>
-        
+
       </div>
     </div>
   );
