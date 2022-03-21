@@ -40,8 +40,10 @@ export default function TopBar() {
           <Link to="/" style={{textDecoration:"none",color:"white"}}>
           <span className="topbarLink">Timeline</span>
       </Link>
+      <Link to="/" style={{textDecoration:"none",color:"white"}}>
           
           <button className="logout" onClick={handleLogoutClick} >Logout</button>
+          </Link>
 
         </div>
         <div className="topbarIcons">
