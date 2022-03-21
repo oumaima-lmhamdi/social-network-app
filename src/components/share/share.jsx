@@ -1,5 +1,5 @@
 import "./share.css";
-import {PermMedia, Label,Room, Mood,Event} from "@mui/icons-material"
+import {PermMedia, Label,Room, Mood,Event,Cancel} from "@mui/icons-material"
 import { useContext,useRef,useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
@@ -32,7 +32,7 @@ export default function Share() {
     }
     try {
       await axios.post("/posts", newPost);
-      window.location.reload(); // refreshing the timeline
+      window.location.reload(false); // refreshing the timeline
     } catch (err) {console.log(err)}
   };
 
@@ -59,6 +59,12 @@ export default function Share() {
           />
         </div>
         <hr className="shareHr"/>
+        {file && (
+          <div className="imgDiv">
+            <img className="sharepostImg" src={URL.createObjectURL(file)} alt="" />
+            <Cancel className="cancelShare" onClick={() => setFile(null)} />
+          </div>
+        )}
         <form className="shareBottom" onSubmit={postSubmit} >
             <div className="shareOptions">
                 <label htmlFor="file" className="shareOption">
