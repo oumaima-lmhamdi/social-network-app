@@ -27,7 +27,10 @@ export default function Feed({ username }) {
   return (
     <div className="feed">
     <div className="feedWrapper">
-    <Share />
+    
+    {/*displaying share only if the profile is the
+    current user profile*/
+    (!username || username === user.username) && <Share />}
      {posts.map((p) => (
       <Post key={p._id} post={p}/>
     ))} 
