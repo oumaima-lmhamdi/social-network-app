@@ -7,7 +7,7 @@ const stateInitiale = {
       "username": "Omarr",
       "email": "oMARR@gmail.com",
       "password": "$2b$10$gmTKnBgIZGVuiGX3DWa1Xu7ZXW2DDAeNa6e1sNnFNC6eXqs8KtpO2",
-      "profilePicture": "2.jpeg",
+      "profilePicture": "",
       "coverPicture": "",
       "followers": [
           "621c0ca916c1c90baea35fa0"

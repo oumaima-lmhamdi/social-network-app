@@ -1,7 +1,7 @@
 .topbarContainer {
-    height: 50px;
+    height: 60px;
     width: 100%;
-    background-color: #12c27e;
+    background-color: #536a79;
     display: flex;
     align-items: center;
     position: sticky; /*even if we scroll the bar stills at the top*/
@@ -99,4 +99,18 @@
     object-fit: cover;
     cursor: pointer;
   }
-  
+  .logout{
+    width: 120px;
+   border: none;
+   padding: 10px;
+   border-radius: 5px;
+   font-weight: bolder;
+   color: rgb(212, 23, 23);
+   background-color: #ffffff;
+   cursor: pointer;
+  }
+  .logout:hover {
+    color: white;
+   background-color: rgb(212, 23, 23);
+
+  }

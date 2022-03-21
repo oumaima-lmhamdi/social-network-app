@@ -3,6 +3,8 @@ import {PermMedia, Label,Room, Mood,Event} from "@mui/icons-material"
 import { useContext,useRef,useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
+import {Link} from "react-router-dom";
+
 
 export default function Share() {
   const { user } = useContext(AuthContext);
@@ -42,11 +44,14 @@ export default function Share() {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
+        <Link to={`/profile/${user.username}`}>
           <img className="shareProfileImg" src={
               user.profilePicture
                 ? PF + user.profilePicture
                 : PF + "person/noAvatar.png"
             } alt="" />
+        </Link>
+            
           <input
             placeholder={"What's on your mind " + user.username + "?"}
             className="shareInput"

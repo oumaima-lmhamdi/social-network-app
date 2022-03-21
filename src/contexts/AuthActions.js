@@ -9,4 +9,7 @@ export const LoginStart = (userCredentials) => ({
     type: "LOGIN_FAILURE",
     payload:error
   });
+  export const Logout=()=>({
+    type:"LOGOUT",
+});
   //payloads are passed to the reducer.

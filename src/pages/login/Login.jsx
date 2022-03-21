@@ -4,6 +4,8 @@ import axios from "axios";
 import { loginFunc } from "../../loginFunc";
 import { useContext, useRef } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import {Link} from "react-router-dom";
+
 
 export default function Login() {
 
@@ -35,9 +37,13 @@ export default function Login() {
             <input placeholder="Password" type="password" required minLength="8" className="loginInput" ref={password} />
             <button className="loginButton" type="submit">Log In</button>
             <span className="loginForgot">Forgot Password?</span>
+      <Link to="/register" style={{textDecoration:"none"}}>
+
             <button className="loginRegisterButton">
             <span className="plus">+</span> Create an Account
             </button>
+      </Link>
+
           </form>
         </div>
       </div>

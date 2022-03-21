@@ -92,7 +92,7 @@ export default function Post({post}) {
                 <span className="postCommentText">{post.comment} comments</span>
                <div className="postBottomRight"> 
                 <span className="sharetext">Send</span>
-                <Send className="sharePostButton" htmlColor="#00E676" /> 
+                <Send className="sharePostButton" htmlColor="#536a79" /> 
                 </div>
                  </div>
                 </div>

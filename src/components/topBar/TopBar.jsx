@@ -1,13 +1,22 @@
 import "./topBar.css";
-import { Search, Person, ChatBubble, Notifications,GroupAdd } from '@mui/icons-material';
+import { Search, Person, ChatBubble, Notifications,GroupAdd,Logout } from '@mui/icons-material';
 import {Link} from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
 
+
 export default function TopBar() {
-  const {user} = useContext(AuthContext);
+  const {user,dispatch} = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const logoutCall = async (dispatch) => {
+    dispatch({ type: "LOGOUT" });
+  };
+  const handleLogoutClick = () => {
+    logoutCall(
+      dispatch
+    );
+  };
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -31,8 +40,8 @@ export default function TopBar() {
           <Link to="/" style={{textDecoration:"none",color:"white"}}>
           <span className="topbarLink">Timeline</span>
       </Link>
-
-          <span className="topbarLink">Network</span>
+          
+          <button className="logout" onClick={handleLogoutClick} >Logout</button>
 
         </div>
         <div className="topbarIcons">
@@ -51,9 +60,15 @@ export default function TopBar() {
         </div>
         
         <Link to={`/profile/${user.username}`}>
-        <img src={user.profilePicture
+        <img
+            src={
+              user.profilePicture
                 ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"} alt="" className="topbarImg"/>
+                : PF + "person/noAvatar.png"
+            }
+            alt=""
+            className="topbarImg"
+          />
         </Link>
 
       </div>
