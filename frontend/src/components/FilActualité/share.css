@@ -1,0 +1,158 @@
+
+/*
+.imgPerson{
+   width: 6%;
+   height:50px;
+   border-radius: 50%;
+}
+
+.share{
+    padding: 2%;
+    width: 50%;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  }
+  .Text{
+    padding-left: 5%;
+  
+
+  }
+  .text{
+    width: 80%;
+    border: none;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  }
+  .buttonShare{
+      background-color: green;
+      color:white;
+        padding: 7px;
+        border-radius: 5px;
+        cursor: pointer;    
+   
+  }
+  .C2{
+      padding-left: 10%;
+  }
+  .shareOptions{
+    display: flex;
+    margin-left: 20px;
+  }
+.Feelings{
+    margin-left: 5%;
+}
+.Tag{
+    margin-left: 5%;
+}
+
+.shareTop{
+
+}
+.shareBottom{
+    margin-top:5%;
+}
+
+
+
+.post{
+    padding: 2%;
+    margin-top: 4%;
+    width: 50%;
+
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
+
+
+.headerPost{
+    display: flex;
+}
+.C{
+    padding-left: 2%;
+
+}
+
+.Options{
+    padding-left: 40%;
+}
+.PostMedia{
+    padding-left: 10%;
+    padding-top: 2%;
+    width: 50%;
+    height: 60%;
+  
+}
+
+
+.IconReaction{
+    width: 30px;
+    height: 30px;
+}*/
+
+.newPost {
+ 
+    margin-left: 10%;
+    width: 100%;
+    height: 130px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  }
+  
+  
+  .postHeader {
+    display: flex;
+    margin-left: 50px;
+    margin-top: 10px;
+  }
+  
+
+ .picUser {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .postInput {
+border: #EA3657;  }
+  .shareInput:focus {
+    outline: none;
+  }
+
+  .postMedia {
+    display: flex;
+    height: 20%;
+  }
+  
+  .contentOptions{
+    margin-right: 20px;
+    display: flexbox;
+margin-top: 10px;
+     
+  }
+  
+  .contentOption{
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      cursor: pointer;
+
+  }
+  
+  .postOptionText{
+      font-size: 14px;
+      font-weight: 500;
+  }
+  
+  .shareButton{
+     width: 100%;
+    font-size: medium;
+    font-weight: bold;
+      border-radius: 5px;
+      background-color: #EA3657;
+      cursor: pointer;
+      color: white;
+  }

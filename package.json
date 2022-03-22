@@ -16,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/oumaima-lmhamdi/social-network-app/issues"
   },
-  "homepage": "https://github.com/oumaima-lmhamdi/social-network-app#readme"
+  "homepage": "https://github.com/oumaima-lmhamdi/social-network-app#readme",
+  "dependencies": {
+    "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
+    "http-proxy-middleware": "^2.0.3",
+    "multer": "^1.4.4",
+    "stream": "^0.0.2",
+    "timeago.js": "^4.0.2",
+    "util": "^0.12.4"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
 }
