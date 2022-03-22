@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
 import {Link} from "react-router-dom";
+import { useParams } from "react-router"; // get a param from the URI 
 
 
 
@@ -14,13 +15,39 @@ import AddFriend from "../addFriend/AddFriend";
 
 export default function Rightbar({ user }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const username = useParams().username;
+
   const [friends, setFriends] = useState([]);
+  const [photosArray, setPhotos] = useState([]);
+
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [followed, setFollowed] = useState(
     currentUser.following.includes(user?._id)
   );
 
   
+  //get the user photos from his posts 
+  useEffect(() => {
+    const getPhotos = async () => {
+      try {
+        const postArray = (await axios.get("/posts/profile/" + username)).data;
+        const photoArray=[];
+        
+        postArray.forEach((item, index)=>{
+          item.img && photoArray.push(item.img);
+        });
+        setPhotos(photoArray);
+        console.log(photosArray)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getPhotos();
+  }, [username]);
+  
+
+
+
   useEffect(() => {
     const getFriends = async () => {
       try {
@@ -73,8 +100,16 @@ export default function Rightbar({ user }) {
   };
 
   const ProfileRightbar = () => {
+    
+
     return (
       <>
+      {user.username == currentUser.username && (
+          <button className="rightbarEditButton" >
+            Edit my profile
+            
+          </button>
+        )}
       {user.username !== currentUser.username && (
           <button className="rightbarFollowButton" onClick={handleFollowClick}>
             {followed ? "Unfollow" : "Follow"}
@@ -91,6 +126,11 @@ export default function Rightbar({ user }) {
             <span className="rightbarInfoKey">From:</span>
             <span className="rightbarInfoValue">{user.from}</span>
           </div>
+          {user.worksAt  && (  
+          <div className="rightbarInfoItem">
+            <span className="rightbarInfoKey">Works at :</span>
+            <span className="rightbarInfoValue">{user.worksAt}</span>
+          </div>)}
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Relationship:</span>
             <span className="rightbarInfoValue">{user.relationship === 1
@@ -103,34 +143,15 @@ export default function Rightbar({ user }) {
         <div>
         <h4 className="rightbarTitle">Photos</h4>
         <div className="rightbarFollowings">
+        {photosArray.map((photo) => (
+          
           <div className="rightbarImage">
             <img
-              src={`${PF}post/1.jpeg`}             
+              src={PF + photo}             
               alt=""
               className="rightbarFollowingImg"
             />
-          </div>
-          <div className="rightbarImage">
-            <img
-              src={`${PF}post/2.jpeg`}             
-              alt=""
-              className="rightbarFollowingImg"
-            />
-          </div>
-          <div className="rightbarImage">
-            <img
-              src={`${PF}post/3.jpeg`}             
-              alt=""
-              className="rightbarFollowingImg"
-            />
-          </div>
-          <div className="rightbarImage">
-            <img
-              src={`${PF}post/4.jpeg`}             
-              alt=""
-              className="rightbarFollowingImg"
-            />
-          </div>
+          </div>))}
           </div>
 
         
