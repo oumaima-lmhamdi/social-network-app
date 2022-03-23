@@ -1,36 +1,65 @@
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
+const dotenv   = require('dotenv');
+const helmet   = require('helmet');
+const morgan   = require('morgan');
+const multer = require("multer");
+const path = require("path");
+//const router = express.Router();
+const userRoute = require('./routes/users');
+const authRoute = require('./routes/auth');
+const postRoute = require('./routes/posts');
 const conversationRoute = require('./routes/conversationRoutes');
 const messageRoute = require('./routes/messageRoutes');
 const cors = require('cors');
 
-////// to be deleted from chat branch
-const userRoute = require('./routes/users');
 
 
+dotenv.config();
 
-const express = require('express');
-const app = express();
+mongoose.connect(process.env.Mongo_URL, {useNewUrlParser: true,useUnifiedTopology: true},()=>{
+    console.log("Connected to MONGODB");
+});
 
-const connectDB = require('./config/db');
-// const messageRoute = require('./routes/messageRoutes');
+// to  not make any request , just using the folder::
+app.use("/postPictures", express.static(path.join(__dirname, "public/postPictures")));
 
-
-// Connect Database
-connectDB();
-
-
-//middleware
 app.use(express.json());
 app.use(cors());
+app.use(helmet());
+app.use(morgan("common"));
 
 
-const port = process.env.PORT || 8082;
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "public/postPictures");
+    },
+    filename: (req, file, cb) => {
+      cb(null, req.body.name);
+    },
+  });
+
+const upload = multer({ storage: storage }); //multer : midlleware for uploading files
+
+//uploading files:
+app.post("/api/upload",upload.single("file"),(req,res)=>{
+    try{
+        return res.status(200);
+    }
+    catch(err){
+       console.log(err);
+    }
+});
 
 app.use("/conversations", conversationRoute);
 app.use("/messages", messageRoute);
+app.use("/api/users" ,userRoute);
+app.use("/api/auth" ,authRoute);
+app.use("/api/posts" ,postRoute);
 
-////////// to be deleted from chat branch
-app.use("/users" ,userRoute);
 
 
-
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(3001,()=> {
+    console.log('server running')
+})
