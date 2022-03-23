@@ -1,0 +1,25 @@
+p.from-them {
+    align-items: flex-start;
+    background-color: #f7f7fb;
+    color: #000;
+  }
+  
+  p.from-them:before {
+    border-bottom-right-radius: 0.8rem 0.7rem;
+    border-left: 1rem solid #f7f7fb;
+    left: -0.35rem;
+    transform: translate(0, -0.1rem);
+  }
+  
+  p.from-them::after {
+    background-color: #fff;
+    border-bottom-right-radius: 0.5rem;
+    left: 20px;
+    transform: translate(-30px, -2px);
+    width: 10px;
+  }
+  .sendedAt-ft{
+    font-size: 12px;
+    margin-top: 10px;
+    left: 20px;
+  }

@@ -1,0 +1,63 @@
+main footer{
+	height:155px;
+	padding:20px 30px 10px 20px;
+}
+main footer form{
+	display: flex;
+}
+
+
+input[type="message"] {
+	-webkit-appearance: none !important;
+	background-clip: padding-box;
+	background-color: white;
+	vertical-align: middle;
+	border-radius: 0.25rem;
+	border: 1px solid #e0e0e5;
+	font-size: 1rem;
+	line-height: 2;
+	padding: 0.375rem 1.25rem;
+	-webkit-transition: border-color 0.2s;
+	-moz-transition: border-color 0.2s;
+	transition: border-color 0.2s;
+  }
+  
+  input[type="message"]:focus {
+	transition: all 0.5s;
+	box-shadow: 0 0 40px #f9d442b9;
+	border-color: #f9d342;
+	outline: none;
+  }
+  
+  form.message-form {
+	display: flex;
+	justify-content: center;
+  }
+  
+
+  
+  input.message-field {
+	margin-bottom: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: auto;
+	align-self: center;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+  }
+  
+  input.message-submit {
+	/* height: 51px; */
+	margin: 0;
+	padding: 0px 1.3rem;
+	border-color: #5e616a;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-right-radius: 0.25rem;
+	border-bottom-right-radius: 0.25rem;
+	font-family: "Font Awesome 5 Free";
+	font-size: 1rem;
+	background-color: #ff5252;
+	color: white;
+	font-weight: bolder;
+  }

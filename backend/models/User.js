@@ -9,10 +9,13 @@ const UserSchema = new mongoose.Schema({
     },
     email: {
         type:String,
+        required:true,
         max:50,
+        unique:true
     },
     password: {
         type:String,
+        required:true,
         max:50,
         min:6
     },
@@ -64,11 +67,6 @@ const UserSchema = new mongoose.Schema({
         type:String,
         max:60
     },
-    friendWith : {
-        type:Array,
-        default : [],
-        unique:true
-    },
 },
 
 
@@ -76,3 +74,5 @@ const UserSchema = new mongoose.Schema({
 
 );
 module.exports = User = mongoose.model("User", UserSchema);
+
+
