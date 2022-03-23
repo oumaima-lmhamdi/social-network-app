@@ -10,7 +10,9 @@ const path = require("path");
 const userRoute = require('./routes/users');
 const authRoute = require('./routes/auth');
 const postRoute = require('./routes/posts');
-
+const conversationRoute = require('./routes/conversationRoutes');
+const messageRoute = require('./routes/messageRoutes');
+const cors = require('cors');
 
 
 
@@ -24,6 +26,7 @@ mongoose.connect(process.env.Mongo_URL, {useNewUrlParser: true,useUnifiedTopolog
 app.use("/postPictures", express.static(path.join(__dirname, "public/postPictures")));
 
 app.use(express.json());
+app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
 
@@ -49,7 +52,8 @@ app.post("/api/upload",upload.single("file"),(req,res)=>{
     }
 });
 
-
+app.use("/conversations", conversationRoute);
+app.use("/messages", messageRoute);
 app.use("/api/users" ,userRoute);
 app.use("/api/auth" ,authRoute);
 app.use("/api/posts" ,postRoute);

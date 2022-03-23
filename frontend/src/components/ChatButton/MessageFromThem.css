@@ -18,3 +18,8 @@ p.from-them {
     transform: translate(-30px, -2px);
     width: 10px;
   }
+  .sendedAt-ft{
+    font-size: 12px;
+    margin-top: 10px;
+    left: 20px;
+  }

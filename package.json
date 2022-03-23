@@ -17,7 +17,13 @@
   "bugs": {
     "url": "https://github.com/oumaima-lmhamdi/social-network-app/issues"
   },
-  "homepage": "https://github.com/oumaima-lmhamdi/social-network-app#readme"
+  "homepage": "https://github.com/oumaima-lmhamdi/social-network-app#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "react-router-dom": "^6.2.2"
+  }
 }
 =======
     "name": "social-network-app",
