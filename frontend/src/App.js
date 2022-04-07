@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./contexts/AuthContext";
-
+import Messenger from "./pages/messenger/Messenger";
 
 
 //import {Person} from "@mui/icons-material"
@@ -22,15 +22,10 @@ function App() {
     <Router>
       <Routes>
       <Route path='/' element={user ? <Home /> : <Login />} />
-      </Routes>
-      <Routes>
       <Route path='/profile/:username' element={<Profile/>} />
-      </Routes>
-      <Routes>
       <Route path='/login' element={user ? <Navigate to="/" /> : <Login />} />
-      </Routes>
-      <Routes>
       <Route path='/register' element={user ? <Navigate to="/" /> : <Register />} />
+      <Route path="/messenger" element={user ? <Messenger /> : <Home />}/>
       </Routes>
     </Router>
   )

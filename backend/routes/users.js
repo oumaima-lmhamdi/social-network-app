@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require('../models/User');
+const Conversation = require('../models/Conversation');
 const bcrypt = require("bcrypt");
 
 
@@ -58,10 +59,23 @@ router.put("/:id/follow", async (req, res) => {
      try {
         const user = await User.findById(req.params.id);
         const currentUser = await User.findById(req.body.userId);
+        const newConversation = new Conversation({
+          members: [req.body.userId, req.params.id],
+        });
         if (!user.followers.includes(req.body.userId)) {
           await user.updateOne({ $push: { followers: req.body.userId }});
           await currentUser.updateOne({ $push: { following: req.params.id }});
-          res.status(200).json("user has been followed");
+
+          
+        
+            const savedConversation = await newConversation.save();
+            res.status(200).json(savedConversation);
+          
+
+
+
+
+          // res.status(200).json("user has been followed");
 
         }else {
           res.status(403).json("you already follow this user");
