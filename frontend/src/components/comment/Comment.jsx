@@ -36,7 +36,7 @@ export default function Comment({comment}){
                         <span className="postUsername">{user.username}</span>
                         <div className="textToTime">{comment.text}</div>
                     </div>
-                    <span className="postBottomRight">{format(comment.createdAt)}</span>
+                    <span className="postBottomRight">{format(comment.date)}</span>
                 </div>
             </div>
         </div>

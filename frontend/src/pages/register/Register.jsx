@@ -21,8 +21,8 @@ export default function Login() {
     e.preventDefault();
     //checking matching passwords.
     if (retypedpassword.current.value !== password.current.value) {
-      retypedpassword.current.setCustomValidity("Passwords aren't matching!");
-      toast.warning("Passwords aren't matching", {autoClose:3500})
+      
+      toast.warning("Passwords aren't matching", {autoClose:3500});
       // an alert pop up
     } 
     else {

@@ -31,6 +31,7 @@ export default function Rightbar({ user }) {
   const worksAt = useRef();
   const birthdate = useRef();
   const navigate = useNavigate(); 
+  const confNewPassword = useRef();
 
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -113,20 +114,28 @@ export default function Rightbar({ user }) {
   const handlingClick = async (e)=>{
     e.preventDefault();
 
-    const modifiedUser = {
-        userId:currentUser._id,
-        username: newUsername.current.value ? newUsername.current.value : currentUser.username,                                                                       
-        email: email.current.value ? email.current.value : currentUser.email,
-        password: newPassword.current.value === " " ? currentUser.password : newPassword.current.value ,
-        desc: description.current.value,
-        city: city.current.value ==="" ?  currentUser.city : city.current.value,
-        worksAt:worksAt.current.value,
-        birthdate:birthdate.current.value,
+    console.log("clicked");
+      
+      console.log(confNewPassword.current.value);
 
-      };
-      console.log(modifiedUser);
-      const editdata = new FormData();
-        
+      if ( confNewPassword.current.value !== newPassword.current.value){
+        //confNewPassword.current.setCustomValidity("Passwords aren't matching!");
+        toast.warning("Passwords aren't matching", {autoClose:3500})
+      }
+      else{ 
+        const modifiedUser = {
+          userId:currentUser._id,
+          username: newUsername.current.value ? newUsername.current.value : currentUser.username,                                                                       
+          email: email.current.value ? email.current.value : currentUser.email,
+          password: newPassword.current.value === "" ? currentUser.password : newPassword.current.value ,
+          desc: description.current.value ===""? currentUser.desc : description.current.value ,
+          city: city.current.value ==="" ?  currentUser.city : city.current.value,
+          worksAt:worksAt.current.value === "" ? currentUser.worksAt : worksAt.current.value ,
+          birthDate:birthdate.current.value,
+  
+        };
+      
+      
       try{
         await axios.put(`/users/${currentUser._id}`, modifiedUser);
         logoutCall(
@@ -139,9 +148,13 @@ export default function Rightbar({ user }) {
   
       }catch(err){
         console.log(err);
-    }
+    }}
+  }
   
-}                                                                                    
+
+    
+  
+                                                                                  
   
   const handleFollowClick = async () => {
     try {
@@ -208,6 +221,8 @@ export default function Rightbar({ user }) {
             <center>
             <input placeholder="Username"  ref={newUsername} className="editInput" /><br />
             <input type= "password" placeholder="New Password"  ref={newPassword} className="editInput" /><br />
+            <input type= "password" placeholder="Confirm New Password"  ref={confNewPassword} className="editInput" /><br />
+
 
             <input placeholder="Email"  type="email" ref={email} className="editInput" /><br />
             <textarea placeholder="Description"  type="text" ref={description} className="editInput" /><br />
@@ -253,13 +268,13 @@ export default function Rightbar({ user }) {
             <span className="rightbarInfoKey">City:</span>
             <span className="rightbarInfoValue">{user.city}</span>
           </div>
-          <div className="rightbarInfoItem">
+          { user.from && (<div className="rightbarInfoItem">
             <span className="rightbarInfoKey">From:</span>
             <span className="rightbarInfoValue">{user.from}</span>
-          </div>
+          </div>)}
           { user.birthDate && (<div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Date of Birth:</span>
-            <span className="rightbarInfoValue">{user.birthDate}</span>
+            <span className="rightbarInfoValue">{user.birthDate.split('T')[0]}</span>
           </div>)}
           {user.worksAt  && (  
           <div className="rightbarInfoItem">
@@ -327,3 +342,4 @@ export default function Rightbar({ user }) {
     </div>
   );
 }
+
