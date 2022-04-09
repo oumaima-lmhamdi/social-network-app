@@ -1,0 +1,42 @@
+.rightbarFriend {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .rightbarProfileImgContainer {
+    margin-right: 10px;
+    position: relative;
+  }
+  
+  .rightbarProfileImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  
+  .rightbarUsername{
+      font-weight: 500;
+  }
+  .followedFriendButton{
+      border-radius: 10px;
+      padding: 5px;
+      margin-left: 5px;
+      margin-right:480px;
+      width:75px;
+      
+      color: rgb(253, 253, 253);
+      background-color: rgb(153, 162, 170);
+      border-color: rgb(153, 162, 170);
+      
+      
+  }
+  .rightAline{
+    position:absolute;
+    right:20px; 
+      
+
+  }
+  
