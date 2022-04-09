@@ -41,6 +41,7 @@ export default function Rightbar({ user }) {
   const [profilPic, setprofileFile] = useState(null);
   const [users, setUsers] = useState([]);
   const [followed, setFollowed] = useState(false);
+  
 
   const editCall = async (dispatch) => {
     dispatch({ type: "EDIT" });
@@ -58,6 +59,13 @@ export default function Rightbar({ user }) {
   const [photosArray, setPhotos] = useState([]);
 
   const { user: currentUser, dispatch } = useContext(AuthContext);
+
+  useEffect(() => {
+    setFollowed(currentUser.following.includes(user?._id));
+
+  },[user]);
+
+  
 
   
   
@@ -116,7 +124,7 @@ export default function Rightbar({ user }) {
   const handlingClick = async (e)=>{
     e.preventDefault();
 
-    console.log("clicked");
+    //console.log("clicked");
       
       console.log(confNewPassword.current.value);
 
@@ -159,6 +167,7 @@ export default function Rightbar({ user }) {
                                                                                   
   
   const handleFollowClick = async () => {
+    console.log("follow clicked");
     try {
       if (followed) {
         await axios.put(`/users/${user._id}/unfollow`, {
@@ -172,6 +181,7 @@ export default function Rightbar({ user }) {
         dispatch({ type: "FOLLOW", payload: user._id });
       }
       setFollowed(!followed);
+      console.log(followed);
     } catch (err) {
     }
   };
