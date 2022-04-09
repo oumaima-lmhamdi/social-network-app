@@ -58,16 +58,8 @@ export default function Rightbar({ user }) {
   const [photosArray, setPhotos] = useState([]);
 
   const { user: currentUser, dispatch } = useContext(AuthContext);
-  
-  if (user){
-    if (currentUser.following.includes(user._id)){
-      setFollowed(true);
-    }
-    else {
-      setFollowed(false);
-    }
 
-  }
+  
   
   
 
