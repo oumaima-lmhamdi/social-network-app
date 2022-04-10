@@ -32,7 +32,7 @@ export default function Share() {
     }
     try {
       await axios.post("/posts", newPost);
-      window.location.reload(false); // refreshing the timeline
+      //window.location.reload(false); // refreshing the timeline
     } catch (err) {console.log(err)}
   };
 

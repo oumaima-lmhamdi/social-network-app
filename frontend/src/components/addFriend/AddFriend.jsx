@@ -12,9 +12,7 @@ export default function AddFriend({user}) {
   const handleClickFollow = async () => {
     
     try {
-        await axios.put(`/users/${user._id}/follow`, {
-          userId: currentUser._id,
-        });
+        await axios.put(`/users/${user._id}/follow`, {userId: currentUser._id});
         console.log(user._id,currentUser._id);
         dispatch({ type: "FOLLOW", payload: user._id });
         setFollowed(!followed);

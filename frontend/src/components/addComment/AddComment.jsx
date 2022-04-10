@@ -14,7 +14,7 @@ export default function AddComment({post}){
         e.preventDefault();
         try{
             await axios.post("/posts/" + post._id +"/comment",{userId: currentUser._id, text: text.current.value });
-            window.location.reload();
+            //window.location.reload();
         }catch (err){}
     }
 

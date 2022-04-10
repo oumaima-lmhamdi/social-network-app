@@ -16,6 +16,11 @@ export default function Post({post}) {
 
     const [isLiked,setIsLiked] = useState(false);
     const [isHearted,setIsHearted] = useState(false);
+    const [postComments,setpostComments] = useState([]);
+
+    useEffect(() => {
+      setpostComments(post.comments);
+    },[post.comments]);
 
     const [user,setUser] = useState({});
 
@@ -122,7 +127,7 @@ export default function Post({post}) {
               displayComment? 
               <div>
                 {
-                  post.comments.map((c)=><Comment comment={c}/>)}
+                  postComments.map((c)=><Comment comment={c}/>)}
               <AddComment post={post}/>
               </div>
               :null}

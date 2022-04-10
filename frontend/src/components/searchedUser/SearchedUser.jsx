@@ -6,10 +6,10 @@ import { AuthContext } from "../../contexts/AuthContext";
 export default function SearchedUser({user}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser, dispatch } = useContext(AuthContext);
-  const [followed, setFollowed] = useState(
-    currentUser.following.includes(user?.id)
-  );
-  const handleClickFollow = async () => {
+  //const [followed, setFollowed] = useState(
+  // currentUser.following.includes(user?.id)
+  //);
+  const handleFollowClick = async() => {
     
     try {
         await axios.put(`/users/${user._id}/follow`, {
@@ -17,7 +17,7 @@ export default function SearchedUser({user}) {
         });
         console.log(user._id,currentUser._id);
         dispatch({ type: "FOLLOW", payload: user._id });
-        setFollowed(!followed);
+        //etFollowed(!followed);
     } catch (err) {
       console.log(err);
     }
@@ -39,7 +39,7 @@ export default function SearchedUser({user}) {
       </div>
       <span className="rightbarUsername">{user.username}</span>
       <div className="rightAline">
-          <button className="searchFriendButton" onClick={handleClickFollow}>+Follow</button>
+          <button className="searchFriendButton" onClick={handleFollowClick}>+Follow</button>
       </div>
     </li>
   );
