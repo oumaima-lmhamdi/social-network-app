@@ -1,7 +1,26 @@
+import { useState, useEffect } from "react";
 import "./online.css";
+import axios from "axios";
 
-export default function Online({user}) {
+
+export default function Online({userId}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [user,setUser] = useState(null);
+
+
+  useEffect(() => {
+  const conts = async () => { try{
+    const res = await axios.get("/users?userId=" + userId);
+    setUser(res.data);
+
+
+
+  }
+  catch(err){
+    console.log(err);
+
+  }}
+},[userId]);
 
   return (
     <li className="rightbarFriend">

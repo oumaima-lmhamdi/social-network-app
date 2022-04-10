@@ -11,13 +11,45 @@ import {
   School,
 } from "@mui/icons-material";
 import { Users } from "../../Donnees";
-import CloseFriends from '../closeFriends/CloseFriends'
+import CloseFriends from '../closeFriends/CloseFriends';
+import { AuthContext } from "../../contexts/AuthContext";
+import { useContext, useEffect, useRef, useState } from "react";
+import ChatOnline from "../../components/chatOnline/ChatOnline";
+import Online from "../../components/chatOnline/ChatOnline";
+
+import {Link} from "react-router-dom";
+
+
+import { io } from "socket.io-client";
+
+
 
 
 
 export default function Sidebar() {
+  const { user } = useContext(AuthContext);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const socket = useRef();
+
+
+  useEffect(() => {
+    socket.current = io("ws://localhost:8900");
+    socket.current.emit("addUser", user._id);
+    socket.current.on("getUsers", (users) => {
+      setOnlineUsers(
+        
+        user.following.filter((f) => users.some((u) => u.userId === f))
+      );
+      console.log(onlineUsers);
+    });
+  }, [user]);
   return (
     <div className="sidebar">
+      <div className="chatOnline">
+      {onlineUsers.map((u) => (
+            <Online key={u.id} userId={u} />
+          ))}
+        </div>
       {/*<div className="sidebarWrapper">
         <ul className="sidebarList">
           <li className="sidebarListItem">
