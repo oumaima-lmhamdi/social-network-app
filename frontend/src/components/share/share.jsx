@@ -13,6 +13,8 @@ export default function Share() {
   const [postCaption,setpostCaption] = useState(postCap);
   const [file, setFile] = useState(null);
 
+  const [val, setVal] = useState();
+
   
 
   //trigerred with the share button
@@ -40,7 +42,7 @@ export default function Share() {
       //window.location.reload(false); // refreshing the timeline
     } catch (err) {console.log(err)}
     setFile(null);
-    setpostCaption(null);
+    setVal(() => "");
     
 
   };
@@ -61,6 +63,7 @@ export default function Share() {
             
           <input
             placeholder={"What's on your mind " + user.username + "?"}
+            value={val}
             className="shareInput"
             ref={postCaption}
           />
@@ -86,7 +89,7 @@ export default function Share() {
               />
                 </label>
                 
-                <div className="shareOption">
+                {/*<div className="shareOption">
                     <Room htmlColor="blue" className="shareIcon"/>
                     <span className="shareOptionText">Location</span>
                 </div>
@@ -101,7 +104,7 @@ export default function Share() {
                 <div className="shareOption">
                     <Mood htmlColor="rebeccapurple" className="shareIcon"/>
                     <span className="shareOptionText">Emotions</span>
-                </div>
+                </div>*/}
             </div>
             <button className="shareButton" type="submit">Share</button>
         </form>

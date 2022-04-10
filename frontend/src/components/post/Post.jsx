@@ -8,6 +8,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 import Comment from "../comment/Comment";
 import AddComment from "../addComment/AddComment";
 import {Dropdown} from "react-bootstrap";
+import {toast} from 'react-toastify';
+
 
 export default function Post({post}) {
     const [like,setLike] = useState(post.likes.length);
@@ -68,6 +70,8 @@ export default function Post({post}) {
      const handleDeletePost = async() => {
       try{
         await axios.delete("/posts/" + post._id, {data: {userId : currentUser._id} });
+        toast.success("Your post has been deleted", {autoClose:2500});
+
         //window.location.reload();
       }catch(err){
         console.log(err);

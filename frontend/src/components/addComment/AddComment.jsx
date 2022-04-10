@@ -9,13 +9,19 @@ export default function AddComment({post}){
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const { user: currentUser } = useContext(AuthContext);
     const text = useRef();
+    const [val, setVal] = useState();
+
+    
+
 
     const submitHandler = async (e) => {
         e.preventDefault();
         try{
             await axios.post("/posts/" + post._id +"/comment",{userId: currentUser._id, text: text.current.value });
             //window.location.reload();
+            setVal(() => "");
         }catch (err){}
+
     }
 
     return(<>
@@ -34,7 +40,7 @@ export default function AddComment({post}){
                                 }
                                 alt=""
                             />
-                                <input className="form-control-add" id="exampleInputEmail1" type="text" placeholder='Add a comment' ref={text}></input>
+                                <input className="form-control-add" id="exampleInputEmail1" type="text" placeholder='Add a comment' ref={text} value={val}></input>
                             </div>
                             <button type="submit" className="commentBtn">Comment</button>
                         </form>

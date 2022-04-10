@@ -1,16 +1,23 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./chatOnline.css";
+import { AuthContext } from "../../contexts/AuthContext";
+
 
 export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   const [friends, setFriends] = useState([]);
   const [onlineFriends, setOnlineFriends] = useState([]);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const { user } = useContext(AuthContext);
+  
 
   useEffect(() => {
     const getFriends = async () => {
+      //FOLLOWINGS
       const res = await axios.get("/users/friends/" + currentId);
-      setFriends(res.data);
+      setFriends((res.data).filter(f => (f.following).includes(user._id) ));
+
+      
     };
 
     getFriends();
@@ -32,7 +39,13 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   };
 
   return (
+
+
+    
     <div className="chatOnline">
+    <h5 className="online">Online Friends</h5>   
+
+      
       {onlineFriends.map((o) => (
         <div className="chatOnlineFriend" onClick={() => handleClick(o)}>
           <div className="chatOnlineImgContainer">

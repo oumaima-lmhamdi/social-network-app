@@ -3,6 +3,8 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import {useState, useContext} from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import {toast} from 'react-toastify';
+
 export default function AddFriend({user}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser, dispatch } = useContext(AuthContext);
@@ -14,9 +16,11 @@ export default function AddFriend({user}) {
       
         await axios.put(`/users/${user._id}/follow`, {
           userId: currentUser._id},);
-        //console.log("ok");
+        
         dispatch({ type: "FOLLOW", payload: user._id });
-        //setFollowed(!followed);
+        toast.success("You're now following" +" "+ user.username, {autoClose:2200});
+
+        
     } catch (err) {
       console.log(err);
     }

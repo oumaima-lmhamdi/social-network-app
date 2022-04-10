@@ -77,10 +77,10 @@ export default function TopBar() {
         <div className="topbarLinks">
           
           <Link to="/" style={{textDecoration:"none",color:"white"}}>
-          <span className="topbarLink">My Feed</span>
+          <span className="topbarLink">Feed</span>
       </Link>
       <Link to="/messenger" style={{textDecoration:"none",color:"white"}}>
-          <span className="topbarLink">My Chats</span>
+          <span className="topbarLink">Chats</span>
       </Link>
       
       <Link to="/" style={{textDecoration:"none",color:"white"}}>
@@ -91,12 +91,7 @@ export default function TopBar() {
         </div>
         <div className="topbarIcons">
           
-          <div className="topbarIconItem">
-          <Link to={'/messenger'}>
-            <ChatBubble />
-          </Link>
-            <span className="topbarIconBadge">1</span>
-          </div>
+          
           <div className="topbarIconItem">
             <Notifications />
             <span className="topbarIconBadge">1</span>
@@ -154,10 +149,10 @@ export default function TopBar() {
         <div className="topbarLinks">
           
           <Link to="/" style={{textDecoration:"none",color:"white"}}>
-          <span className="topbarLink">My Feed</span>
+          <span className="topbarLink">Feed</span>
       </Link>
       <Link to="/messenger" style={{textDecoration:"none",color:"white"}}>
-          <span className="topbarLink">My Chats</span>
+          <span className="topbarLink">Chats</span>
       </Link>
       <Link to="/" style={{textDecoration:"none",color:"white"}}>
           
@@ -167,10 +162,7 @@ export default function TopBar() {
         </div>
         <div className="topbarIcons">
           
-          <div className="topbarIconItem">
-            <ChatBubble />
-            <span className="topbarIconBadge">1</span>
-          </div>
+          
           <div className="topbarIconItem">
             <Notifications />
             <span className="topbarIconBadge">1</span>

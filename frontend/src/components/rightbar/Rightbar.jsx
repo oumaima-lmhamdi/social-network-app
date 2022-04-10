@@ -55,7 +55,9 @@ export default function Rightbar({ user }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [followings, setFollowings] = useState([]);
   const [friends, setFriends] = useState([]);
+
   const [photosArray, setPhotos] = useState([]);
 
   const { user: currentUser, dispatch } = useContext(AuthContext);
@@ -95,11 +97,27 @@ export default function Rightbar({ user }) {
 
 
   useEffect(() => {
+    const getFollowings = async () => {
+      try {
+        const followingArray = await axios.get("/users/friends/" + user._id);
+        setFollowings(followingArray.data);
+        console.log(followings);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getFollowings();
+  }, [user]);
+
+  useEffect(() => {
     const getFriends = async () => {
       try {
         const friendArray = await axios.get("/users/friends/" + user._id);
-        setFriends(friendArray.data);
+        console.log(friendArray.data);
+
+        setFriends((friendArray.data).filter(f => (f.following).includes(user._id) ));
         console.log(friends);
+        
       } catch (err) {
         console.log(err);
       }
@@ -331,6 +349,28 @@ export default function Rightbar({ user }) {
 
         
 
+        </div>
+        <h4 className="rightbarTitle">Followings</h4>
+        <div className="rightbarFollowings">
+        {followings.map((friend) => (
+            <Link
+              to={"/profile/" + friend.username}
+              style={{ textDecoration: "none" }}
+            >
+              <div className="rightbarFollowing">
+                <img
+                  src={
+                    friend.profilePicture
+                      ? PF + friend.profilePicture
+                      : PF + "person/noAvatar.png"
+                  }
+                  alt=""
+                  className="rightbarFollowingImg"
+                />
+                <span className="rightbarFollowingName">{friend.username}</span>
+              </div>
+            </Link>
+          ))}
         </div>
         <h4 className="rightbarTitle">Friends</h4>
         <div className="rightbarFollowings">

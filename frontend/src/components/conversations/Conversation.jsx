@@ -20,7 +20,7 @@ export default function Conversation({ conversation, currentUser }) {
     getUser();
   }, [currentUser, conversation]);
 
-  console.log(user);
+  
   return (
     <div className="conversation">
       <img
