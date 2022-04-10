@@ -1,6 +1,6 @@
 import "./share.css";
 import {PermMedia, Label,Room, Mood,Event,Cancel} from "@mui/icons-material"
-import { useContext,useRef,useState } from "react";
+import { useContext,useEffect,useRef,useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
 import {Link} from "react-router-dom";
@@ -9,12 +9,16 @@ import {Link} from "react-router-dom";
 export default function Share() {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const postCaption = useRef();
+  const postCap = useRef();
+  const [postCaption,setpostCaption] = useState(postCap);
   const [file, setFile] = useState(null);
+
+  
 
   //trigerred with the share button
   const postSubmit = async (e) => {
     e.preventDefault();
+    
     const newPost = {
       userId: user._id,
       desc: postCaption.current.value,
@@ -32,13 +36,16 @@ export default function Share() {
     }
     try {
       await axios.post("/posts", newPost);
+
       //window.location.reload(false); // refreshing the timeline
     } catch (err) {console.log(err)}
+    setFile(null);
+    setpostCaption(null);
+    
+
   };
 
   
-
-
 
   return (
     <div className="share">

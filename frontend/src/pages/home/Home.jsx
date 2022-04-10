@@ -27,6 +27,10 @@ export default function Home() {
   const [searchedPosts,setsearchedPosts] = useState([]);
   const [followings,setFollowings] = useState([]);
   const [searchedUsers,setsearchedUsers] = useState([]);
+  const [openPosts,setopenPosts] = useState(true);
+  const [openUsers,setopenUsers] = useState(true);
+
+
 
 
 
@@ -72,12 +76,14 @@ export default function Home() {
     );
   };
   const handlePeopleFilter = () => {
-    setsearchedPosts([]);
+    setopenPosts(false);
+    setopenUsers(true);
     
     
   };
   const handlePostsFilter = () => {
-    setsearchedUsers([]);
+    setopenUsers(false);
+    setopenPosts(true);
   };
 
   
@@ -160,27 +166,27 @@ export default function Home() {
         </div>
 
       <div className="feedAddFriend">
-      {
+      {openUsers && (
         searchedUsers.filter(item => (user.following.includes(item._id))).map((u) => (
           <FollowedFriend key={u.id} user={u}/>
 
-        ))}
+        )))}
       </div>
 
       <div className="feedAddFriend">
-      {
+      {openUsers && (
         searchedUsers.filter(item => (item.username !== user.username)).filter(item => (!(user.following.includes(item._id)))).map((u) => (
           <SearchedUser key={u.id} user={u}/>
 
-        ))}
+        )))}
       </div>
       <hr />
         
       
-      {
+      {openPosts && (
       searchedPosts.map((p) => (
         <Post key={p._id} post={p} className="searchedPost"/>
-      ))}
+      )))}
       </div>
       </div>
               

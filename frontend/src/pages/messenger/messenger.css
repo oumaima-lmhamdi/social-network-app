@@ -85,6 +85,12 @@
     justify-content: space-between;
     margin-top: 20px;
   }
+  .note{
+    color: rgba(151, 148, 148, 0.836);
+    font-size: 17px;
+
+
+  }
   
   @media screen and (max-width: 768px) {
     .chatMenu {

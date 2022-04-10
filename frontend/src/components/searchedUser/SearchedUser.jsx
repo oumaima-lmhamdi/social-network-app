@@ -1,5 +1,5 @@
 import "./searchedUser.css";
-import {axios} from "axios";
+import axios from "axios";
 import {Link} from "react-router-dom";
 import {useState, useContext} from "react";
 import { AuthContext } from "../../contexts/AuthContext";

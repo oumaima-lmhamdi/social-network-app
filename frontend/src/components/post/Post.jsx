@@ -47,6 +47,7 @@ export default function Post({post}) {
 
     const likeHandler =()=>{
       try {
+        //console.log(axios);
         axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
       } catch (err) {}
       setLike(isLiked ? like - 1 : like + 1);
@@ -67,7 +68,7 @@ export default function Post({post}) {
      const handleDeletePost = async() => {
       try{
         await axios.delete("/posts/" + post._id, {data: {userId : currentUser._id} });
-        window.location.reload();
+        //window.location.reload();
       }catch(err){
         console.log(err);
       }

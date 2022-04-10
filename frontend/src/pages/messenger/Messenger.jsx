@@ -151,6 +151,7 @@ export default function Messenger() {
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
+            <span className="note">Friends you follow or you had a conversation with:</span>
             
             {conversations.map((c) => (
               <div onClick={() => setCurrentChat(c)}>
